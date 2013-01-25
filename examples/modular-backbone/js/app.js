@@ -1,16 +1,18 @@
 // Filename: app.js
 define([
-  'jquery', 
-  'underscore', 
+  'sillythings',
+  'jquery',
+  'underscore',
   'backbone',
   'router', // Request router.js
-], function($, _, Backbone, Router){
-  var initialize = function(){
+], function(sillythings, $, _, Backbone, AppRouter){
+  var initr = function(){
     // Pass in our Router module and call it's initialize function
-    Router.initialize();
+    AppRouter.initialize();
   };
 
-  return { 
-    initialize: initialize
+  console.log(sillythings.varxported);
+  return {
+    initialize: initr
   };
 });

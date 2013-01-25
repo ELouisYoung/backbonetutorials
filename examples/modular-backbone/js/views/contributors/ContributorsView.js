@@ -10,7 +10,7 @@ define([
   //var contributorsListView;
 
   var ContributorsView = Backbone.View.extend({
-    
+
     el: $("#page"),
 
     initialize:function() {
@@ -21,7 +21,7 @@ define([
           that.render();
       }
 
-      that.collection = new ContributorsCollection([]); 
+      that.collection = new ContributorsCollection([]);
       that.collection.fetch({ success : onDataHandler, dataType: "jsonp" });
 
     },
@@ -32,17 +32,17 @@ define([
       $('.menu li a[href="'+window.location.hash+'"]').parent().addClass('active');
 
       var total_contributions = this.getTotalContributions(this.collection.models);
-      var total_contributors = this.collection.models.length;  
-    
-      var data = { total_contributions : total_contributions, 
-                  total_contributors : total_contributors}; 
+      var total_contributors = this.collection.models.length;
 
-      // main view  
+      var data = { total_contributions : total_contributions,
+                  total_contributors : total_contributors};
+
+      // main view
       var compiledTemplate = _.template( contributorsTemplate, data );
-      this.$el.html( compiledTemplate ); 
+      this.$el.html( compiledTemplate );
 
-      // sub view 
-      var contributorsListView = new ContributorsListView({ collection: this.collection}); 
+      // sub view
+      var contributorsListView = new ContributorsListView({ collection: this.collection});
       contributorsListView.render();
 
     },
@@ -50,13 +50,13 @@ define([
     getTotalContributions:function( aModels ){
 
       var total = 0;
-      
-      _.each(aModels, function(contributorModel) { 
+
+      _.each(aModels, function(contributorModel) {
          var contributorContributions = Number ( contributorModel.get("contributions") );
-         total += contributorContributions; 
+         total += contributorContributions;
       });
 
-      return total; 
+      return total;
     },
 
     clearListView: function() {
